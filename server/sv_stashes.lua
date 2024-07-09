@@ -1,5 +1,26 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local ox_inventory = exports.ox_inventory
 
+if Config.System == 'ox' then
+    RegisterNetEvent('bd-tacojob:server:RegisterFrontTray1', function()
+        ox_inventory:RegisterStash('tacojob_counter', 'Counter', 5, 5000, false)
+    end)
+elseif Config.System == 'qb' then
+    RegisterNetEvent('bd-tacojob:server:frontTray1', function(frontTray1)
+        local src = source
+        local Player = QBCore.Functions.GetPlayer(src)
+        local stashName = 'TacoHuts Counter'
+    
+        if Player then
+            exports['qb-inventory']:OpenInventory(src, stashName, {
+                maxweight = 50000,
+                slots = 15,
+            })
+        end
+    end)
+end
+
+/*
 ----- | CREATING INVENTORYS | -----
 ----- | FRONT COUNTER | -----
 RegisterNetEvent('bd-tacojob:server:frontTray1', function(frontTray1)
@@ -14,6 +35,7 @@ RegisterNetEvent('bd-tacojob:server:frontTray1', function(frontTray1)
         })
     end
 end)
+*/
 
 ----- | JOB FRIDGE | -----
 RegisterNetEvent('bd-tacojob:server:jobFridge', function(jobFridge)
