@@ -1,8 +1,55 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local ox_inventory = exports.ox_inventory
 
 ----- | CREATING INVENTORIES | -----
 -- 1 --
-exports['qb-target']:AddBoxZone("TacoJobFrontTray1", vector3(10.44, -1605.16, 29.37), 0.9, 0.9, {
+if Config.System == 'ox' then
+	exports.ox_target:addBoxZone({
+		coords = vec4(10.77, -1604.91, 29.49, 222.49),
+		size = vec3(2, 2, 2),
+		rotation = 45,
+		debug = drawZones,
+		options = {
+			{
+				name = 'tacohut_fronttray1',
+				event = 'bd-tacojob:client:frontTray1',
+				icon = 'fa-solid fa-equals',
+				label = 'Counter',
+			},
+		}
+	})
+	
+	RegisterNetEvent('bd-tacojob:client:frontTray1', function()
+		if ox_inventory:openInventory('Counter', 'tacojob_counter') == false then
+			TriggerServerEvent('bd-tacojob:server:RegisterFrontTray1')
+			ox_inventory:openInventory('Counter', 'tacojob_counter')
+		end
+	end)
+elseif Config.System == 'qb' then
+	exports['qb-target']:AddBoxZone("TacoJobFrontTray1", vector3(10.77, -1604.91, 29.37), 0.9, 0.9, {
+		name = "TacoJobFrontTray1",
+		heading = 347.27,
+		debugPoly = false,
+		minZ = 29.37 - 2,
+		maxZ = 29.37 + 2,
+	}, {
+		options = {
+			{
+				type = "client",
+				event = "bd-tacojob:client:frontTray1",
+				icon = "fa-solid fa-equals",
+				label = "Counter",
+			},
+		},
+		distance = 2.5
+	})
+	
+	RegisterNetEvent("bd-tacojob:client:frontTray1", function()
+		TriggerServerEvent('bd-tacojob:server:frontTray1')
+	end)
+end
+
+/*exports['qb-target']:AddBoxZone("TacoJobFrontTray1", vector3(10.44, -1605.16, 29.37), 0.9, 0.9, {
 	name = "TacoJobFrontTray1",
 	heading = 347.27,
 	debugPoly = false,
@@ -22,7 +69,7 @@ exports['qb-target']:AddBoxZone("TacoJobFrontTray1", vector3(10.44, -1605.16, 29
 
 RegisterNetEvent("bd-tacojob:client:frontTray1", function()
     TriggerServerEvent('bd-tacojob:server:frontTray1')
-end)
+end)*/
 
 -- FRIDGE --
 exports['qb-target']:AddBoxZone("TacoJobJobFridge", vector3(12.39, -1600.8, 29.38), 0.9, 0.9, {
