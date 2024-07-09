@@ -11,6 +11,9 @@
                               |_|                             
 --]]
 Config = {}
+
+Config.System = 'ox' -- Supports 'qb' & 'ox'
+
 ----- | PED STUFF | -----
 Config.tacoGaragePed = {
     {
