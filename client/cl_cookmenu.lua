@@ -1,25 +1,47 @@
 local QBCore = exports['qb-core']:GetCoreObject()
------ | CREATING COOK MENU LOCATION | ----- 
-exports['qb-target']:AddBoxZone("TacoJobCookMenu", vector3(10.9, -1598.95, 29.38), 0.9, 0.9, {
-	name = "TacoJobCookMenu",
-	heading = 347.27,
-	debugPoly = false,
-	minZ = 29.38 - 2,
-	maxZ = 29.38 + 2,
-}, {
-	options = {
-		{
-            type = "client",
-            event = "bd-tacojob:client:OpenCookMenu",
-			icon = "fa-solid fa-fire-burner",
-			label = "Cook Menu",
-			job = "taco",
-		},
-	},
-	distance = 2.5
-})
+local ox_inventory = exports.ox_inventory
 
------ | CREATING MENU | -----
+if Config.TargetSystem == 'ox' then
+	----- | CREATING COOK MENU LOCATION | -----
+	exports.ox_target:addBoxZone({
+		coords = vec4(10.9, -1598.95, 29.38, 222.49),
+		size = vec3(2, 2, 2),
+		rotation = 45,
+		debug = drawZones,
+		options = {
+			{
+				name = 'TacoJobCookMenu',
+				event = 'bd-tacojob:client:OpenCookMenu',
+				icon = 'fa-solid fa-fire-burner',
+				label = 'Cook Menu',
+				groups = {
+					taco = 0
+				},
+			},
+		}
+	})
+elseif Config.TargetSystem == 'qb' then
+	----- | CREATING COOK MENU LOCATION | -----
+	exports['qb-target']:AddBoxZone("TacoJobCookMenu", vector3(10.9, -1598.95, 29.38), 0.9, 0.9, {
+		name = "TacoJobCookMenu",
+		heading = 347.27,
+		debugPoly = false,
+		minZ = 29.38 - 2,
+		maxZ = 29.38 + 2,
+	}, {
+		options = {
+			{
+				type = "client",
+				event = "bd-tacojob:client:OpenCookMenu",
+				icon = "fa-solid fa-fire-burner",
+				label = "Cook Menu",
+				job = "taco",
+			},
+		},
+		distance = 2.5
+	})
+end
+----- | CREATING COOK MENU | -----
 lib.registerContext({
 	id = 'taco_cook_menu',
 	title = 'Cook Menu',
