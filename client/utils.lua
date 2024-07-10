@@ -43,26 +43,50 @@ local function CreateLocalNPC(index)
         FreezeEntityPosition(tacoGaragePed, true)
         SetEntityInvincible(tacoGaragePed, true)
         SetBlockingOfNonTemporaryEvents(tacoGaragePed, true)
-        ----- | CREATING TARGET FOR PED | -----
-        exports['qb-target']:AddTargetEntity(tacoGaragePed, { 
-            options = {
-            { 
-                type = "client",
-                event = "bd-tacojob:client:jobGarage",
-                icon = "fa-solid fa-warehouse",
-                label = "Garage",
-                job = "taco"
-            },
-            { 
-                type = "client",
-                event = "bd-tacojob:client:storeGarage",
-                icon = "fa-solid fa-square-parking",
-                label = "Store Vehicle",
-                job = "taco"
-            },
-            }, 
-            distance = 1.5, 
-        })
+        if Config.TargetSystem == 'ox' then
+            ----- | CREATING TARGET FOR PED | -----
+            exports.ox_target:addLocalEntity(tacoGaragePed, {
+                    {
+                        name = 'tacohut_jobgarage',
+				        event = 'bd-tacojob:client:jobGarage',
+				        icon = 'fa-solid fa-warehouse',
+				        label = 'Garage',
+                        groups = {
+                            taco = 0
+                        },
+                    },
+                    {
+                        name = 'tacohut_storegarage',
+				        event = 'bd-tacojob:client:storeGarage',
+				        icon = 'fa-solid fa-square-parking',
+				        label = 'Store Vehicles',
+                        groups = {
+                            taco = 0
+                        },
+                    },
+            })
+        elseif Config.TargetSystem == 'qb' then
+            ----- | CREATING TARGET FOR PED | -----
+            exports['qb-target']:AddTargetEntity(tacoGaragePed, {
+                options = {
+                { 
+                    type = "client",
+                    event = "bd-tacojob:client:jobGarage",
+                    icon = "fa-solid fa-warehouse",
+                    label = "Garage",
+                    job = "taco"
+                },
+                { 
+                    type = "client",
+                    event = "bd-tacojob:client:storeGarage",
+                    icon = "fa-solid fa-square-parking",
+                    label = "Store Vehicle",
+                    job = "taco"
+                },
+                }, 
+                distance = 1.5, 
+            })
+        end
     LocalNPCs[index].tacoGaragePed = tacoGaragePed
 end
 
