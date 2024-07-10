@@ -12,7 +12,8 @@
 --]]
 Config = {}
 
-Config.System = 'ox' -- Supports 'qb' & 'ox'
+Config.TargetSystem = 'ox' -- Supports 'qb' & 'ox'
+Config.InventorySystem = 'qb' -- Supports 'qb' | Looking for tester for ox. contact me on discord @ baylorai
 
 ----- | PED STUFF | -----
 Config.tacoGaragePed = {
