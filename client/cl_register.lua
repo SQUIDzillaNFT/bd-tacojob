@@ -1,25 +1,46 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local ox_inventory = exports.ox_inventory
 
--- 1 --
-exports['qb-target']:AddBoxZone("TacoHutRegister1", vector3(9.72, -1605.65, 29.37), 0.9, 0.9, {
-	name = "TacoHutRegister1",
-	heading = 347.27,
-	debugPoly = false,
-	minZ = 29.37 - 2,
-	maxZ = 29.37 + 2,
-}, {
-	options = {
-		{
-            type = "client",
-            event = "bd-tacojob:client:bill",
-			icon = "fa-solid fa-cash-register",
-			label = "Register",
-			job = "taco",
+if Config.TargetSystem == 'ox' then
+	-- 1 --
+	exports.ox_target:addBoxZone({
+		coords = vec4(10.77, -1604.91, 29.49, 222.49),
+		size = vec3(2, 2, 2),
+		rotation = 45,
+		debug = drawZones,
+		options = {
+			{
+				name = 'tacohutregister1',
+				event = 'bd-tacojob:client:bill',
+				icon = 'fa-solid fa-cash-register',
+				label = 'Register',
+				groups = {
+					taco = 0
+				},
+			},
+		}
+	})
+elseif Config.TargetSystem == 'qb' then
+	-- 1 --
+	exports['qb-target']:AddBoxZone("TacoHutRegister1", vector3(9.72, -1605.65, 29.37), 0.9, 0.9, {
+		name = "TacoHutRegister1",
+		heading = 347.27,
+		debugPoly = false,
+		minZ = 29.37 - 2,
+		maxZ = 29.37 + 2,
+	}, {
+		options = {
+			{
+				type = "client",
+				event = "bd-tacojob:client:bill",
+				icon = "fa-solid fa-cash-register",
+				label = "Register",
+				job = "taco",
+			},
 		},
-	},
-	distance = 2.5
-})
-
+		distance = 2.5
+	})
+end
 RegisterNetEvent("bd-tacojob:client:bill", function()
     local bill = lib.inputDialog('Register', {
         {type = 'input', label = 'Citizen ID', description = 'Players Citizen ID', icon = 'hashtag'},
