@@ -4,8 +4,8 @@ local ox_inventory = exports.ox_inventory
 if Config.TargetSystem == 'ox' then
 	-- 1 --
 	exports.ox_target:addBoxZone({
-		coords = vec4(10.77, -1604.91, 29.49, 222.49),
-		size = vec3(2, 2, 2),
+		coords = vec4(9.75, -1605.81, 29.43, 50.87),
+		size = vec3(1, 1, 1),
 		rotation = 45,
 		debug = drawZones,
 		options = {
