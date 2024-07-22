@@ -56,21 +56,23 @@ if Config.TargetSystem == 'ox' then
 	})
 	-- SHOP --
 	exports.ox_target:addBoxZone({
-		coords = vec4(17.23, -1599.24, 29.38, 222.49),
+		coords = vec4(17.45, -1599.1, 29.29, 143.94),
 		size = vec3(2, 2, 2),
 		rotation = 45,
 		debug = drawZones,
 		options = {
 			{
-				name = 'tacohut_jobStorage',
-				event = 'bd-tacojob:client:jobShop',
-				icon = 'fa-solid fa-basket-shopping',
-				label = 'Shop',
+				name = 'tacohut_shop',
+				icon = 'fa-solid fa-shopping-basket',
+				label = 'Ingredient Shop',
 				groups = {
 					taco = 0
 				},
+				onSelect = function ()
+					exports.ox_inventory:openInventory('shop', {type = 'thshop'})
+				end
 			},
-		}
+		},
 	})
 elseif Config.TargetSystem == 'qb' then
 	-- FRONT COUNTER --
@@ -153,30 +155,23 @@ end
 if Config.InventorySystem == 'ox' then
 	-- FRONT COUNTER --
 	RegisterNetEvent('bd-tacojob:client:frontTray1', function()
-		if ox_inventory:openInventory('Counter', 'tacojob_counter') == false then
-			TriggerServerEvent('bd-tacojob:server:RegisterFrontTray1')
-			ox_inventory:openInventory('Counter', 'tacojob_counter')
+		if ox_inventory:openInventory('stash', 'frontTray') == false then
+			TriggerServerEvent('ox:frontTray')
+			ox_inventory:openInventory('stash', 'frontTray')
 		end
 	end)
 	-- FRIDGE --
 	RegisterNetEvent('bd-tacojob:client:jobFridge', function()
-		if ox_inventory:openInventory('Fridge', 'tacojob_fridge') == false then
-			TriggerServerEvent('bd-tacojob:server:RegisterFridge')
-			ox_inventory:openInventory('Fridge', 'tacojob_fridge')
+		if ox_inventory:openInventory('stash', 'jobFridge') == false then
+			TriggerServerEvent('ox:jobFridge')
+			ox_inventory:openInventory('stash', 'jobFridge')
 		end
 	end)
-	-- STORAGE -- 
+	-- STORAGE --
 	RegisterNetEvent('bd-tacojob:client:jobStorage', function()
-		if ox_inventory:openInventory('Storage', 'tacojob_storage') == false then
-			TriggerServerEvent('bd-tacojob:server:RegisterStorage')
-			ox_inventory:openInventory('Storage', 'tacojob_storage')
-		end
-	end)
-	-- SHOP --
-	RegisterNetEvent('bd-tacojob:client:ingredientShop', function()
-		if ox_inventory:openInventory('Tacohut-Shop', 'tacohutshop') == false then
-			TriggerServerEvent('bd-tacojob:server:RegisterShop')
-			ox_inventory:openInventory('Tacohut-Shop', 'tacohutshop')
+		if ox_inventory:openInventory('stash', 'jobStorage') == false then
+			TriggerServerEvent('ox:jobStorage')
+			ox_inventory:openInventory('stash', 'jobStorage')
 		end
 	end)
 elseif Config.InventorySystem == 'qb' then
