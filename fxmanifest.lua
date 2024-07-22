@@ -3,7 +3,7 @@ game 'gta5'
 lua54 'yes'
 author 'Baylorai Development'
 description 'QBCore Taco Job using ox_lib'
-version '0.0.2'
+version '0.1.0'
 
 client_scripts {
     'client/*.lua',
