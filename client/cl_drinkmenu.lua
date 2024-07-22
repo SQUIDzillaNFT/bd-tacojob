@@ -52,21 +52,21 @@ lib.registerContext({
         description = 'You need 2x Carbonated Water',
         icon = 'faucet',
         iconColor = 'Red',
-        serverEvent = 'bd-tacojob:server:makeEcola'
+        event = 'bd-tacojob:client:makeEcola'
       }, UN COMMENT THIS IF YOU WANT TO ADD ECOLA */
       {
         title = '2x Sprunk',
         description = 'You need 2x Carbonated Water',
         icon = 'faucet',
         iconColor = 'SpringGreen',
-        serverEvent = 'bd-tacojob:server:makeSprunk'
+        event = 'bd-tacojob:client:makeSprunk'
       },
       {
         title = '2x Orang-O-Tang',
         description = 'You need 2x Oranges',
         icon = 'faucet',
         iconColor = 'DarkOrange',
-        serverEvent = 'bd-tacojob:server:makeOrangTang'
+        event = 'bd-tacojob:client:makeOrangTang'
       },
     }
 })
@@ -74,3 +74,70 @@ lib.registerContext({
 RegisterNetEvent('bd-tacojob:client:OpenDrinkMenu', function()
     lib.showContext('taco_drink_menu')
 end)
+
+RegisterNetEvent('bd-tacojob:client:makeOrangTang', function()
+  if lib.progressCircle({
+    duration = 1250,
+    position = 'bottom',
+    useWhileDead = false,
+    canCancel = true,
+    disable = {
+      move = true,
+      car = true,
+      combat = true,
+    },
+    anim = {
+      dict = 'mini@repair',
+      clip = 'fixing_a_player',
+      scenario = 'mini@repair',
+    },
+  }) then
+    TriggerServerEvent('bd-tacojob:server:makeOrangTang')
+  else
+  end
+end)
+
+RegisterNetEvent('bd-tacojob:client:makeSprunk', function()
+  if lib.progressCircle({
+    duration = 1250,
+    position = 'bottom',
+    useWhileDead = false,
+    canCancel = true,
+    disable = {
+      move = true,
+      car = true,
+      combat = true,
+    },
+    anim = {
+      dict = 'mini@repair',
+      clip = 'fixing_a_player',
+      scenario = 'mini@repair',
+    },
+  }) then
+    TriggerServerEvent('bd-tacojob:server:makeSprunk')
+  else
+  end
+end)
+
+RegisterNetEvent('bd-tacojob:client:makeEcola', function()
+  if lib.progressCircle({
+    duration = 1250,
+    position = 'bottom',
+    useWhileDead = false,
+    canCancel = true,
+    disable = {
+      move = true,
+      car = true,
+      combat = true,
+    },
+    anim = {
+      dict = 'mini@repair',
+      clip = 'fixing_a_player',
+      scenario = 'mini@repair',
+    },
+  }) then
+    TriggerServerEvent('bd-tacojob:server:makeEcola')
+  else
+  end
+end)
+
