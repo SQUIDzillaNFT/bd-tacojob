@@ -1,31 +1,23 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local ox_inventory = exports.ox_inventory
 
+exports.ox_inventory:RegisterShop('thshop', {
+    name = 'Tacohut Shop',
+    inventory = Config.Items
+})
+
 if Config.InventorySystem == 'ox' then
     ----- | FRONT COUNTER | -----
-    RegisterNetEvent('bd-tacojob:server:RegisterFrontTray1', function()
-        ox_inventory:RegisterStash('tacojob_counter', 'Counter', 5, 5000, false)
+    RegisterNetEvent('ox:frontTray', function()
+        ox_inventory:RegisterStash('frontTray', 'Counter', 5, 5000, true)
     end)
     ----- | JOB FRIDGE | -----
-    RegisterNetEvent('bd-tacojob:server:RegisterFridge', function()
-        ox_inventory:RegisterStash('tacojob_fridge', 'Fridge', 25, 50000, false)
+    RegisterNetEvent('ox:jobFridge', function()
+        ox_inventory:RegisterStash('jobFridge', 'Fridge', 25, 50000, true)
     end)
     ----- | JOB STORAGE | -----
-    RegisterNetEvent('bd-tacojob:server:RegisterStorage', function()
-        ox_inventory:RegisterStash('tacojob_storage', 'Storage', 50, 85000, false)
-    end)
-    ----- | CREATING SHOP | ----
-    RegisterNetEvent('bd-tacojob:server:RegisterShop', function()
-        exports.ox_inventory:RegisterShop('tacohutshop', {
-            name = 'Tacohut-Shop',
-            inventory = Config.Items,
-            locations = {
-                vector3(17.25, -1599.23, 29.4),
-            },
-            groups = {
-                taco = 0
-            },
-        })
+    RegisterNetEvent('ox:jobStorage', function()
+        ox_inventory:RegisterStash('jobStorage', 'Storage', 50, 85000, true)
     end)
 elseif Config.InventorySystem == 'qb' then
     ----- | FRONT COUNTER | -----
@@ -75,7 +67,6 @@ elseif Config.InventorySystem == 'qb' then
         exports['qb-inventory']:CreateShop({
             name = 'ingredientShop',
             label = 'Taco Huts Shop',
-            --coords = vector3(8.19, -1607.27, 29.38), -- match where the target is on client side 
             slots = 20,
             items = Config.Items
         })
@@ -85,4 +76,3 @@ elseif Config.InventorySystem == 'qb' then
         end
     end)
 end
-
