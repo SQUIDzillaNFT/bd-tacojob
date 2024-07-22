@@ -51,67 +51,260 @@ lib.registerContext({
 		description = 'You need 2x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeBeefBurrito'
+		event = 'bd-tacojob:client:makeBeefBurrito'
 	  },
 	  {
 		title = '2x Beef Enchilada',
 		description = 'You need 2x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeBeefEnchilada'
+		event = 'bd-tacojob:client:makeBeefEnchilada'
 	  },
 	  {
 		title = '2x Beef Taco',
 		description = 'You need 2x Raw Ground Beef',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeBeefTaco'
+		event = 'bd-tacojob:client:makeBeefTaco'
 	  },
 	  {
 		title = '2x Chicken Burrito',
 		description = 'You need 2x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeChickenBurrito'
+		event = 'bd-tacojob:client:makeChickenBurrito'
 	  },
 	  {
 		title = '2x Chicken Caesar Wrap',
 		description = 'You need 2x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeChickenCaesarWrap'
+		event = 'bd-tacojob:client:makeChickenCaesarWrap'
 	  },
 	  {
 		title = '2x Chicken Taco',
 		description = 'You need 2x Raw Chicken',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeChickenTaco'
+		event = 'bd-tacojob:client:makeChickenTaco'
 	  },
 	  {
 		title = '2x Greek Veggie Wrap',
 		description = 'You need 2x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeVeggieWrap'
+		event = 'bd-tacojob:client:makeVeggieWrap'
 	  },
 	  {
 		title = '2x Nachos',
 		description = 'You need 2x Tortilla Chips',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeNachos'
+		event = 'bd-tacojob:client:makeNachos'
 	  },
 	  {
 		title = '2x Quesadilla',
 		description = 'You need 4x Tortillas',
 		icon = 'utensils',
 		iconColor = 'Salmon',
-		serverEvent = 'bd-tacojob:server:makeQuesadilla'
+		event = 'bd-tacojob:client:makeQuesadilla'
 	  },
 	}
   })
 ----- | REGISTERING MENU TO 'OpenCookMenu' | -----
+RegisterNetEvent('bd-tacojob:client:OpenCookMenu', function()
+    lib.showContext('taco_cook_menu')
+end)
+
+RegisterNetEvent('bd-tacojob:client:makeBeefBurrito', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeBeefBurrito')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeBeefEnchilada', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeBeefEnchilada')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeBeefTaco', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeBeefTaco')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeChickenBurrito', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeChickenBurrito')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeChickenCaesarWrap', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeChickenCaesarWrap')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeChickenTaco', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeChickenTaco')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeVeggieWrap', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeVeggieWrap')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeNachos', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeNachos')
+	else
+	end
+end)
+RegisterNetEvent('bd-tacojob:client:makeQuesadilla', function()
+	if lib.progressCircle({
+		duration = 1250,
+		position = 'bottom',
+		useWhileDead = false,
+		canCancel = true,
+		disable = {
+			move = true,
+			car = true,
+			combat = true,
+		},
+		anim = {
+			dict = 'mini@repair',
+			clip = 'fixing_a_player',
+			scenario = 'mini@repair',
+		},
+	}) then
+		TriggerServerEvent('bd-tacojob:server:makeQuesadilla')
+	else
+	end
+end)
 RegisterNetEvent('bd-tacojob:client:OpenCookMenu', function()
     lib.showContext('taco_cook_menu')
 end)
