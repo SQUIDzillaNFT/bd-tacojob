@@ -41,7 +41,7 @@ RegisterNetEvent("bd-tacojob:server:billPlayer", function(playerId, amount)
                     icon = 't',
                     iconColor = '#FA8072'
                   })
-            exports['qb-banking']:AddMoney('taco', amount, 'Sale')
+            exports['qb-management']:AddMoney('taco', amount, 'Sale')
                 else
                     lib.notify(source, {
                         id = 'taco_hut',
